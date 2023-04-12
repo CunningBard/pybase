@@ -1,10 +1,11 @@
 from linked_list import LinkedList
 from option import Option
+from typing import Hashable, Any
 
 SPREAD_SIZE = 256
 
 
-def true_hash(val):
+def true_hash(val: Hashable) -> int:
     return hash(val) % SPREAD_SIZE
 
 
@@ -18,7 +19,7 @@ class HashMap:
     def __init__(self):
         self.values = [LinkedList()] * SPREAD_SIZE
 
-    def get(self, key) -> Option:
+    def get(self, key: Hashable) -> Option:
         index = true_hash(key)
         val = self.values[index]
         res = val.get(lambda x: x.key == key)
@@ -28,7 +29,7 @@ class HashMap:
 
         return Option(res.unwrap().val)
 
-    def insert(self, key, value):
+    def insert(self, key: Hashable, value: Any):
         index = true_hash(key)
         val = self.values[index]
         value = HashNode(key, value)
