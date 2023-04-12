@@ -8,7 +8,7 @@ class Option:
 		if self.val is not None:
 			return self.val
 
-		raise Error("Unwrap on None")
+		raise Exception("Unwrap on None")
 
 	def is_some(self) -> bool:
 		return self.val is not None
